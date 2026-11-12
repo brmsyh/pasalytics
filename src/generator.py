@@ -68,7 +68,8 @@ class GeminiGenerator:
     def answer(self, question: str, hits: list[Hit]) -> Answer:
         prompt = f"Context:\n{format_context(hits)}\n\nQuestion: {question}"
         text = self.complete(prompt)
-        cited = sorted({int(n) for n in re.findall(r"\[(\d+)\]", text) if 0 < int(n) <= len(hits)})
+        groups = re.findall(r"\[(\d+(?:\s*,\s*\d+)*)\]", text)  # [1] and [1, 5]
+        cited = sorted({int(n) for g in groups for n in re.split(r"\s*,\s*", g) if 0 < int(n) <= len(hits)})
         return Answer(question, text, hits, cited)
 
 
