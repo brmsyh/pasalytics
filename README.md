@@ -54,19 +54,55 @@ No real client or firm data is used.
 | Retriever | Hit@1 | Hit@3 | Hit@5 | MRR |
 |---|---|---|---|---|
 | BM25 (lexical baseline) | 0.852 | 0.967 | 0.984 | 0.903 |
-| Dense (Gemini embeddings) | *run notebook 03* | | | |
-| **Hybrid (RRF)** | *run notebook 03* | | | |
+| Dense (Gemini embeddings) | 0.934 | 1.000 | 1.000 | 0.964 |
+| **Hybrid (RRF, used in the app)** | **0.951** | **1.000** | **1.000** | **0.975** |
 
-**Key finding:** BM25 reaches Hit@1 = 0.95 on factual questions but only **0.63 on paraphrased questions** (e.g. *"a client forgot to renew"* vs the document's *"grace period"*). Closing that gap is the reason for adding semantic embeddings and hybrid fusion.
+Hit@1 by question type:
+
+| Retriever | Factual (42) | Paraphrased (19) |
+|---|---|---|
+| BM25 | 0.952 | 0.632 |
+| Dense | 0.905 | **1.000** |
+| Hybrid | **0.976** | 0.895 |
+
+**Key findings**
+- **Keyword search breaks on real staff phrasing.** BM25 finds the right document first for 95% of factual questions but only **63% of paraphrased ones** (*"a client forgot to renew"* vs the document's *"grace period"*).
+- **Embeddings fix paraphrases but lose some precision.** Dense retrieval ranks the right document first for every paraphrased question, yet drops to 0.905 on factual questions, where exact terms such as fee names and SOP codes matter.
+- **Hybrid gives the best overall result.** Fusing both lifts Hit@1 from 0.852 to **0.951** (+10 points) and MRR to **0.975**, and the correct source is in the top 3 for **100%** of questions, so the answer model always receives the passage it needs.
+
+**Error analysis.** Hybrid misses rank 1 on only 3 of 61 questions, and in all three the correct document is ranked **2nd**, so it still reaches the answer model:
+
+| Question | Expected | Ranked 1st | Why |
+|---|---|---|---|
+| When are docketing reminders sent for an office action deadline? | SOP-TM-03 | SOP-TM-05 | Both SOPs describe reminder schedules; "docketing" appears in the title of SOP-TM-05 |
+| A client forgot to renew and the mark expired two months ago… | SOP-TM-05 | SOP-TM-01 | Casual wording and "mark" pull towards the trademark search SOP |
+| How should I name a draft response file? | POL-DOC-01 | SOP-TM-03 | "Draft response" also describes the office-action SOP |
+
+These overlaps between similar procedures are the target of the next improvement: a reranker on the top candidates.
 
 ### Answer quality (LLM-as-judge, notebook 04)
 
+All 66 questions, answer and judge model `gemini-3.5-flash-lite`, hybrid retrieval, top-5 passages.
+
 | Metric | Result |
 |---|---|
-| Correctness (1–5) | *run notebook 04* |
-| Faithfulness (1–5) | |
-| Answers with citation | |
-| Correct refusals on unanswerable questions | |
+| Faithfulness (1–5, no hallucination) | **5.00** (every answer fully supported by its sources) |
+| Correctness (1–5) | **4.84** |
+| Fully correct answers (score 5) | **88.5%** (54 of 61) |
+| Answers with a source citation | **91.8%** |
+| Correct refusals on unanswerable questions | **100%** (5 of 5) |
+| False refusals on answerable questions | **1.6%** (1 of 61) |
+
+| Question type | Correctness | Fully correct |
+|---|---|---|
+| Factual (42) | 4.86 | 85.7% |
+| Paraphrased (19) | 4.79 | 94.7% |
+
+**What the numbers mean**
+- **Zero hallucinations.** Faithfulness is 5/5 on every answer, and all 5 questions outside the knowledge base (intern policy, firm revenue, official 2026 DJKI fees…) were answered with *"I could not find this"* instead of an invented figure. For a firm quoting deadlines and fees to clients, this is the most important result.
+- **The 6 answers scored 4 are correct but incomplete**, not wrong: the main fact (fee, deadline, currency) is right, while a secondary detail from the reference is left out, e.g. the 14-day response period after a cease-and-desist letter. This comes from the "be concise" instruction and can be tuned in the prompt.
+- **One false refusal (Q015).** *"A competitor's similar mark was just published. By when do we need the client's go-ahead to object?"* The relevant SOP was retrieved, but the model did not connect *"go-ahead to object"* with *"instructions for an opposition"* and, following the strict grounding rule, declined rather than infer. A query-rewriting step that maps staff wording to SOP terms is the planned fix.
+- **5 answers lacked a bracketed citation** although they were correct; a stricter output format (or a post-check that adds the source) closes this gap.
 
 ![Retrieval comparison](reports/figures/03_retrieval_comparison.png)
 
@@ -125,7 +161,8 @@ Without an API key, `python -m src.build_index --no-embed` builds a BM25-only in
 ## 8. Limitations and Next Steps
 
 - Add a cross-encoder or Gemini-based **reranker** on the top-20 candidates.
-- **Query rewriting** for very short or ambiguous questions.
+- **Query rewriting** that maps staff wording to SOP terminology (would fix the one false refusal).
+- Enforce citations on every answer with a post-generation check.
 - Access control per document (e.g. HR policies visible only to HR).
 - Scanned regulation PDFs need OCR before indexing.
 - Track cost and latency per query (LLMOps).
