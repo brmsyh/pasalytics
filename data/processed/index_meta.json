@@ -1,0 +1,7 @@
+{
+  "n_chunks": 84,
+  "n_documents": 20,
+  "built_at": "2026-11-12 11:48",
+  "embedding_model": "gemini-embedding-001",
+  "embedding_dim": 768
+}

@@ -1,0 +1,67 @@
+qid,question,expected_doc_id,reference_answer,question_type
+Q001,How much does a knock-out trademark search cost per class?,SOP-TM-01,"IDR 750,000 per class, delivered within 1 working day.",factual
+Q002,How long is a trademark clearance opinion valid before the search must be refreshed?,SOP-TM-01,30 calendar days.,factual
+Q003,"A client wants to check a logo, not just a word mark. Is there an extra charge?",SOP-TM-01,"Yes, a device (logo) search surcharge of IDR 1,000,000 per class on top of the comprehensive search.",paraphrase
+Q004,What should the associate recommend if the search finds two or more high-risk conflicts?,SOP-TM-01,Recommend re-branding or a co-existence strategy.,factual
+Q005,What is the minimum resolution for a trademark specimen?,SOP-TM-02,"JPG, minimum 1000 x 1000 pixels.",factual
+Q006,How much extra does an urgent same-day trademark filing cost?,SOP-TM-02,"An urgent surcharge of IDR 1,500,000 per application.",factual
+Q007,Do we give any discount when a client files in many classes at once?,SOP-TM-02,10% off professional fees from the third class onwards.,paraphrase
+Q008,Within what period must a priority document be submitted after filing in Indonesia?,SOP-TM-02,Within 3 months of the Indonesian filing date.,factual
+Q009,What is our professional fee for a standard trademark application?,SOP-TM-02,"IDR 3,500,000 per class, official fees charged separately.",factual
+Q010,How many days do we have to respond to a provisional refusal from the examiner?,SOP-TM-03,30 days from the date of the notice; draft ready 7 calendar days before the deadline.,factual
+Q011,The examiner rejected our client's mark. What arguments can we use in the reply?,SOP-TM-03,"Dissimilarity of marks or goods, co-existence evidence, letter of consent, or limiting the specification.",paraphrase
+Q012,When are docketing reminders sent for an office action deadline?,SOP-TM-03,"14, 7 and 3 days before the due date.",factual
+Q013,What status code is used when a trademark refusal becomes final?,SOP-TM-03,TM-REF-FINAL.,factual
+Q014,How much do we charge to file a trademark opposition?,SOP-TM-04,"IDR 6,500,000 per opposition, excluding official fees and translation.",factual
+Q015,A competitor's similar mark was just published. By when do we need the client's go-ahead to object?,SOP-TM-04,At least 10 working days before the end of the 2-month publication period.,paraphrase
+Q016,What is the internal target for drafting a counter-statement when our client's application is opposed?,SOP-TM-04,"Within 10 working days of receiving the opposition copy; fee IDR 5,000,000.",factual
+Q017,Who must review an opposition brief before it is filed?,SOP-TM-04,A partner.,factual
+Q018,How long does an Indonesian trademark registration last?,SOP-TM-05,"10 years, renewable for the same period.",factual
+Q019,At which points before expiry do clients get renewal reminders?,SOP-TM-05,"12 months, 6 months, 3 months and 1 month before expiry.",factual
+Q020,"A client forgot to renew and the mark expired two months ago. Can we still save it, and what is our fee?",SOP-TM-05,"Yes, late renewal is possible within 6 months after expiry; professional fee IDR 3,500,000 per class.",paraphrase
+Q021,What happens if the client never gives renewal instructions by the end of the grace period?,SOP-TM-05,The matter is closed with status TM-LAPSED and a closing letter is sent.,factual
+Q022,What do we charge per designated country in a Madrid application?,SOP-TM-06,"IDR 750,000 per designated country, plus IDR 5,000,000 per international application.",factual
+Q023,For how many years does an international registration depend on the basic Indonesian mark?,SOP-TM-06,5 years from the international registration date (central attack).,factual
+Q024,A foreign law firm sends us a DJKI refusal for their client's international registration. How fast must we report?,SOP-TM-06,"Within 2 working days of receiving the DJKI notice, in English.",paraphrase
+Q025,What is the PCT national phase entry deadline for Indonesia?,SOP-PT-01,31 months from the priority date.,factual
+Q026,How much do we charge per word to translate a patent specification?,SOP-PT-01,IDR 350 per word.,factual
+Q027,The client sent PCT instructions two weeks before the deadline. Is there an extra charge?,SOP-PT-01,"Yes, instructions less than 1 month before the deadline incur an urgent surcharge of IDR 2,500,000.",paraphrase
+Q028,How long is a simple patent protected?,SOP-PT-01,10 years from the filing date (a normal patent: 20 years).,factual
+Q029,When are patent annuity reminders sent?,SOP-PT-02,"3 months, 1 month and 2 weeks before the due date.",factual
+Q030,Can we pay a patent annuity before the client's money arrives?,SOP-PT-02,Only if the client has a standing credit arrangement approved by the Finance Manager.,paraphrase
+Q031,What discount do large patent portfolios get on annuity handling?,SOP-PT-02,20% for clients with more than 50 patents.,factual
+Q032,Which views are required for an industrial design application?,SOP-ID-01,"Front, back, left, right, top, bottom and perspective.",factual
+Q033,Can an industrial design registration be renewed?,SOP-ID-01,"No, it lasts 10 years from filing and cannot be renewed.",factual
+Q034,What does it cost to add more designs to the same application?,SOP-ID-01,"IDR 1,000,000 for each additional design.",paraphrase
+Q035,What is the fee for recording copyright in software?,SOP-CR-01,"IDR 2,500,000 per work.",factual
+Q036,What documents does a company need to record a copyright it owns?,SOP-CR-01,"Sample of the work, statement of ownership, deed of establishment and the assignment from the creator.",paraphrase
+Q037,What is the format of a matter number?,POL-CL-01,"LIP-YYYY-NNNNN, e.g. LIP-2026-00412.",factual
+Q038,Who decides when a conflict check finds a potential conflict?,POL-CL-01,The Managing Partner.,factual
+Q039,Can we start urgent work before the engagement letter is signed?,POL-CL-01,"Yes for urgent deadline matters, but the engagement letter must be signed within 5 working days.",paraphrase
+Q040,Do we need a wet-ink original Power of Attorney to file?,POL-KYC-01,"No, a scanned copy is accepted under firm policy.",paraphrase
+Q041,How often are client due diligence documents refreshed?,POL-KYC-01,Every 3 years for active clients.,factual
+Q042,What is the hourly rate of a senior associate?,POL-BILL-01,"IDR 2,200,000 per hour.",factual
+Q043,In what time units is billable time recorded?,POL-BILL-01,6-minute units (0.1 hour).,factual
+Q044,When do we need a written cost estimate before starting advisory work?,POL-BILL-01,"When the matter is expected to exceed IDR 25,000,000.",paraphrase
+Q045,Which currency are foreign clients invoiced in?,POL-BILL-01,"USD, at the exchange rate on the invoice date.",factual
+Q046,What happens when an invoice is 90 days overdue?,POL-BILL-02,New non-urgent work is put on hold with written notice; deadline-critical work continues unless a partner approves.,factual
+Q047,"Who can approve writing off IDR 8,000,000?",POL-BILL-02,"The Managing Partner (partners can only approve up to IDR 5,000,000).",paraphrase
+Q048,What are the standard payment terms?,POL-BILL-02,30 days from the invoice date.,factual
+Q049,Am I allowed to paste a client's unpublished patent into ChatGPT?,POL-CONF-01,"No, client confidential information must not go into public AI tools; only approved tools in the IT register.",paraphrase
+Q050,Within how many hours must a suspected data breach be reported?,POL-CONF-01,Within 24 hours to the Data Protection Officer.,factual
+Q051,How long are closed matter files kept?,POL-CONF-01,"10 years after closure, then securely destroyed.",factual
+Q052,How should I name a draft response file?,POL-DOC-01,"MatterNumber_DocType_YYYYMMDD_vN, e.g. LIP-2026-00412_ResponseDraft_20260915_v2.",paraphrase
+Q053,When must official DJKI documents be entered in the docketing system?,POL-DOC-01,On the same working day they are received.,factual
+Q054,How quickly must we acknowledge a client email?,GUIDE-COM-01,Within 4 working hours.,factual
+Q055,A client is unhappy with our service. What do I do?,GUIDE-COM-01,Escalate to the responsible partner within 1 working day and log it in the Client Feedback Register.,paraphrase
+Q056,How many days of annual leave do permanent staff get?,HR-01,14 working days per year.,factual
+Q057,How many days a week can I work from home?,HR-01,Up to 2 days per week with team leader approval.,paraphrase
+Q058,How long is the probation period for new staff?,HR-02,3 months.,factual
+Q059,How many training hours must fee earners complete each year?,HR-02,At least 20 hours.,factual
+Q060,What does a cease-and-desist letter cost?,GUIDE-DSP-01,"IDR 5,000,000 fixed fee; infringer given 14 days to respond.",factual
+Q061,Someone is selling fake products of our client on a marketplace. What do we charge to take them down?,GUIDE-DSP-01,"IDR 400,000 per listing, minimum IDR 2,000,000 per batch.",paraphrase
+Q062,What is the firm's policy on hiring interns?,,Not in the knowledge base.,unanswerable
+Q063,What is the official DJKI fee for a trademark application in 2026?,,Not in the knowledge base (official fees are passed through at cost; amounts not stated).,unanswerable
+Q064,Who is the current Managing Partner of the firm?,,Not in the knowledge base.,unanswerable
+Q065,What is our policy on geographical indications?,,Not in the knowledge base.,unanswerable
+Q066,How much is the firm's annual revenue?,,Not in the knowledge base.,unanswerable
