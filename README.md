@@ -1,4 +1,4 @@
-# ⚖️ Pasalytics: IP Firm Knowledge Assistant (RAG over SOPs and Indonesian IP Regulations)
+# Pasalytics: IP Firm Knowledge Assistant (RAG over SOPs and Indonesian IP Regulations)
 
 **Pasalytics** (*Pasal* + *analytics*) is a retrieval-augmented generation (RAG) assistant that answers staff questions about filing procedures, deadlines, fees and internal policies of an intellectual property (IP) firm, **citing the exact passage behind every answer** and refusing to guess when the answer is not in the knowledge base.
 
