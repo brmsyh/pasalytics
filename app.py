@@ -28,6 +28,14 @@ EXAMPLES = [
 ]
 
 
+def wide_button(container, label: str, key: str) -> bool:
+    """Full-width button that shows its whole label (wraps instead of truncating)."""
+    try:
+        return container.button(label, key=key, width="stretch")
+    except TypeError:  # older Streamlit versions
+        return container.button(label, key=key, use_container_width=True)
+
+
 @st.cache_resource(show_spinner="Loading index...")
 def get_pipeline(mode: str):
     retriever = build_retriever(mode)
@@ -35,7 +43,13 @@ def get_pipeline(mode: str):
     return retriever, generator
 
 
+clicked = None
 with st.sidebar:
+    st.header("Example questions")
+    for i, ex in enumerate(EXAMPLES):
+        if wide_button(st, ex, key=f"side_ex_{i}"):
+            clicked = ex
+    st.divider()
     st.header("Settings")
     mode = st.radio("Retrieval mode", ["hybrid", "dense", "bm25"], index=0,
                     help="Hybrid = BM25 + Gemini embeddings fused with Reciprocal Rank Fusion.")
@@ -57,11 +71,13 @@ st.write("Ask about filing procedures, deadlines, fees and internal policies. "
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-cols = st.columns(len(EXAMPLES))
-clicked = None
-for col, ex in zip(cols, EXAMPLES):
-    if col.button(ex, use_container_width=True):
-        clicked = ex
+examples_area = st.empty()
+if not st.session_state.messages:  # show examples in the main area until the first question
+    with examples_area.container():
+        st.markdown("**Try one of these:**")
+        for i, ex in enumerate(EXAMPLES):
+            if wide_button(st, ex, key=f"main_ex_{i}"):
+                clicked = ex
 
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
@@ -69,6 +85,7 @@ for msg in st.session_state.messages:
 
 question = st.chat_input("Ask a question...") or clicked
 if question:
+    examples_area.empty()  # hide the example list once the conversation starts
     st.session_state.messages.append({"role": "user", "content": question})
     with st.chat_message("user"):
         st.markdown(question)
