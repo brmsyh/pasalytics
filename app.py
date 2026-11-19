@@ -17,7 +17,7 @@ from src import config  # noqa: E402
 from src.generator import GeminiGenerator, RAGPipeline  # noqa: E402
 from src.retriever import build_retriever  # noqa: E402
 
-st.set_page_config(page_title="Pasalytics", page_icon="⚖️", layout="centered")
+st.set_page_config(page_title="Pasalytics", layout="centered")
 
 EXAMPLES = [
     "How long do we have to respond to a provisional refusal?",
@@ -63,7 +63,7 @@ retriever, generator = get_pipeline(mode)
 if retriever.name != mode:
     st.sidebar.warning(f"Running in {retriever.name.upper()} mode (no embeddings or API key found).")
 
-st.title("⚖️ Pasalytics")
+st.title("Pasalytics")
 st.caption("Your IP firm knowledge assistant: procedures, deadlines, fees and regulations, with sources.")
 st.write("Ask about filing procedures, deadlines, fees and internal policies. "
          "Every answer cites the passages it is based on.")
